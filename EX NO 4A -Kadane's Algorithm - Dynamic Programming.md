@@ -1,7 +1,7 @@
-
 # EX 4A Kadane's Algorithm - Dynamic Programming. 
-## DATE:
-## AIM:
+## DATE: 18/10/2025
+
+## Aim:
 To Write a Java program to solve the below problem using Kadane's Algorithm.
 A solar company installs solar panels around a circular grid of n buildings. Each building either generates or consumes net energy, represented by integers (+ve for generated, -ve for consumed).
 
@@ -10,34 +10,79 @@ The company wants to find a contiguous sequence of buildings (possibly wrapping 
 Write a program to compute the maximum net energy that can be collected from any contiguous block of buildings on the circular grid.
 
 Input Format:
+
 First line: Integer n (number of buildings)
 
 Second line: n space-separated integers: net energy for each building
 
 Output Format:
+
 A single integer: Maximum net energy collectable from a contiguous block (wrapping allowed)
 
 Constraints:
+
 1 <= n <= 10^6
+
 ## Algorithm
-1. 
-2. 
-3. 
-4.  
-5.   
+
+1. Start the program and read the number of solar panels `n` and their energy values into an array.
+2. Use Kadane’s algorithm (`kadane()`) to find the maximum subarray sum without wrapping around.
+3. Calculate the total energy sum and use another Kadane’s algorithm (`kadaneMin()`) to find the minimum subarray sum.
+4. Compute the maximum circular sum as `totalSum - minSubarraySum` and compare it with the non-circular maximum.
+5. Print the greater value as the maximum solar energy that can be obtained.
 
 ## Program:
-```
-/*
+```txt
 Program to implement Reverse a String
-Developed by: 
-Register Number:  
-*/
+Developed by: Sudharsanam R K
+Register Number:  212222040163
+```
+```java
+import java.util.*;
+
+public class SolarEnergyMaximizer {
+
+    public static int maxCircularEnergy(int[] energy) {
+        int maxKadane = kadane(energy); 
+        int totalSum = 0;
+        for (int num : energy) totalSum += num;
+        int minSubarraySum = kadaneMin(energy);
+        int maxCircular = totalSum - minSubarraySum;
+        return maxCircular > 0 ? Math.max(maxKadane, maxCircular) : maxKadane;
+    }
+
+    private static int kadane(int[] arr) {
+        int maxSoFar = arr[0], maxEndingHere = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            maxEndingHere = Math.max(arr[i], maxEndingHere + arr[i]);
+            maxSoFar = Math.max(maxSoFar, maxEndingHere);
+        }
+        return maxSoFar;
+    }
+
+    private static int kadaneMin(int[] arr) {
+        int minSoFar = arr[0], minEndingHere = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            minEndingHere = Math.min(arr[i], minEndingHere + arr[i]);
+            minSoFar = Math.min(minSoFar, minEndingHere);
+        }
+        return minSoFar;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] energy = new int[n];
+        for (int i = 0; i < n; i++) {
+            energy[i] = sc.nextInt();
+        }
+        System.out.println(maxCircularEnergy(energy));
+    }
+}
 ```
 
 ## Output:
-
-
+<img width="375" height="209" alt="image" src="https://github.com/user-attachments/assets/80c304bb-534e-4c2e-b80c-42338615b419" />
 
 ## Result:
 The program successfully Implemented and the output is verified. 

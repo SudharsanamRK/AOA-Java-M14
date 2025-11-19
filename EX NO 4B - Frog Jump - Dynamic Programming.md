@@ -27,7 +27,7 @@ A single integer – number of distinct ways to reach step n.
 
 ## Program:
 ```txt
-Program to implement Reverse a String
+Program to implement Frog Jump - Dynamic Programming
 Developed by: Sudharsanam R K
 Register Number: 212222040163
 ```

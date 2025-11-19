@@ -33,7 +33,7 @@ Constraints:
 
 ## Program:
 ```txt
-Program to implement Reverse a String
+Program to implement Kadane's Algorithm - Dynamic Programming
 Developed by: Sudharsanam R K
 Register Number:  212222040163
 ```
